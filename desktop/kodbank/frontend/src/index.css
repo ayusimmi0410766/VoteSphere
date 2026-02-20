@@ -1,0 +1,28 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --kodbank-gold: #d4af37;
+  --kodbank-dark: #0f1419;
+  --kodbank-navy: #1a2332;
+  --kodbank-green: #00c853;
+  --kodbank-accent: #7c3aed;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--kodbank-dark);
+  color: #e8eaed;
+  min-height: 100vh;
+}
+
+#app {
+  min-height: 100vh;
+}
