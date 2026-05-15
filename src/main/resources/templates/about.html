@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en"
+	  xmlns:th="http://www.thymeleaf.org"
+	  th:replace="~{base::layout(~{::section})}">
+
+<head>
+	<meta charset="UTF-8"/>
+	<title>About</title>
+</head>
+
+<body>
+
+<section class="about-section">
+
+	<div class="about-card">
+
+		<!-- HEADING -->
+
+		<h1>About VoteSphere</h1>
+
+		<!-- DESCRIPTION -->
+
+		<p>
+			VoteSphere is a secure and responsive online voting platform
+			developed using Spring Boot, Thymeleaf, Hibernate and MySQL.
+			The application ensures secure authentication, seamless voting
+			and a modern user experience.
+		</p>
+
+		<!-- FEATURE GRID -->
+
+		<div class="about-grid">
+
+			<!-- BOX 1 -->
+
+			<div class="about-box">
+
+				<i class="bi bi-shield-check"></i>
+
+				<h3>Secure Voting</h3>
+
+				<p>
+					Protected authentication and safe voting process using
+					Spring Security.
+				</p>
+
+			</div>
+
+			<!-- BOX 2 -->
+
+			<div class="about-box">
+
+				<i class="bi bi-display"></i>
+
+				<h3>Modern UI</h3>
+
+				<p>
+					Responsive and attractive frontend using Bootstrap,
+					Flexbox and custom CSS.
+				</p>
+
+			</div>
+
+			<!-- BOX 3 -->
+
+			<div class="about-box">
+
+				<i class="bi bi-lightning-charge-fill"></i>
+
+				<h3>Fast Performance</h3>
+
+				<p>
+					Optimized backend with Spring Boot and Hibernate ORM
+					for better performance.
+				</p>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</section>
+
+</body>
+
+</html>
