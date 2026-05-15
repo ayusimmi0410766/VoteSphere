@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en"
+	  xmlns:th="http://www.thymeleaf.org"
+	  th:replace="~{base::layout(~{::section})}">
+
+<head>
+	<meta charset="UTF-8"/>
+	<title>Register</title>
+</head>
+
+<body>
+
+<section class="auth-section">
+
+	<div class="auth-card register-card">
+
+		<!-- HEADING -->
+
+		<h1>Create Account</h1>
+
+		<p class="subtitle">
+			Register yourself to participate in secure online voting
+		</p>
+
+		<!-- ERROR MESSAGE -->
+
+		<div th:if="${session.fail}" class="message error-msg">
+
+			<h5 th:text="${session.fail}"></h5>
+
+			<th:block th:text="${#session.removeAttribute('fail')}"></th:block>
+
+		</div>
+
+		<!-- SUCCESS MESSAGE -->
+
+		<div th:if="${session.msg}" class="message success-msg">
+
+			<h5 th:text="${session.msg}"></h5>
+
+			<th:block th:text="${#session.removeAttribute('msg')}"></th:block>
+
+		</div>
+
+		<!-- REGISTER FORM -->
+
+		<form th:action="@{/createuser}" method="post">
+
+			<div class="input-group-custom">
+
+				<label>User Name</label>
+
+				<input type="text"
+					   name="name"
+					   class="form-control"
+					   placeholder="Enter your username"
+					   required>
+
+			</div>
+
+			<div class="input-group-custom">
+
+				<label>Password</label>
+
+				<input type="password"
+					   name="password"
+					   class="form-control"
+					   placeholder="Enter your password"
+					   required>
+
+			</div>
+
+			<div class="input-group-custom">
+
+				<label>Email Address</label>
+
+				<input type="email"
+					   name="email"
+					   class="form-control"
+					   placeholder="Enter your email"
+					   required>
+
+			</div>
+
+			<div class="input-group-custom">
+
+				<label>Phone Number</label>
+
+				<input type="text"
+					   name="phone"
+					   class="form-control"
+					   placeholder="Enter your phone number"
+					   required>
+
+			</div>
+
+			<button type="submit" class="custom-btn">
+
+				Register
+
+			</button>
+
+		</form>
+
+	</div>
+
+</section>
+
+</body>
+
+</html>
