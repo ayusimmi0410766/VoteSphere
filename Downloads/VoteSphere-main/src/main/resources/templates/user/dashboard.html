@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en"
+	  xmlns:th="http://www.thymeleaf.org"
+	  th:replace="~{user/base::layout(~{::section})}">
+
+<head>
+	<meta charset="UTF-8"/>
+	<title>User Dashboard</title>
+</head>
+
+<body>
+
+<section class="dashboard-section">
+
+	<div class="dashboard-grid">
+
+		<!-- USER PROFILE CARD -->
+
+		<div class="profile-card">
+
+			<img th:src="@{/image/user.png}"
+				 alt="User Image">
+
+			<h2 th:text="${user.name}"></h2>
+
+			<div class="profile-info">
+
+				<p>
+					<strong>Email:</strong>
+					<span th:text="${user.email}"></span>
+				</p>
+
+				<p>
+					<strong>Phone:</strong>
+					<span th:text="${user.phone}"></span>
+				</p>
+
+				<!-- STATUS -->
+
+				<div th:if="${user.status}">
+
+                    <span class="status-badge success-badge"
+						  th:text="${user.status}">
+                    </span>
+
+				</div>
+
+				<div th:unless="${user.status}">
+
+                    <span class="status-badge pending-badge">
+
+                        Not Voted
+
+                    </span>
+
+				</div>
+
+			</div>
+
+		</div>
+
+		<!-- VOTING CARD -->
+
+		<div class="vote-card">
+
+			<h2>Cast Your Vote</h2>
+
+			<!-- SUCCESS MESSAGE -->
+
+			<div th:if="${session.vmsg}" class="message success-msg">
+
+				<h5 th:text="${session.vmsg}"></h5>
+
+			</div>
+
+			<!-- ALREADY VOTED -->
+
+			<div th:unless="${session.vmsg}">
+
+				<div th:if="${user.status}">
+
+					<h4 class="already-voted">
+
+						You have already voted successfully
+
+					</h4>
+
+				</div>
+
+			</div>
+
+			<!-- VOTING FORM -->
+
+			<form th:action="@{/addcandidate}" method="post">
+
+				<div th:unless="${user.status}">
+
+					<input th:value="${user.email}"
+						   name="email"
+						   type="hidden">
+
+					<!-- CANDIDATE 1 -->
+
+					<div class="candidate-option">
+
+						<img src="https://randomuser.me/api/portraits/men/1.jpg"
+							 width="70"
+							 height="70"
+							 style="border-radius:50%; margin-bottom:10px;">
+
+						<input type="radio"
+							   name="candidate"
+							   value="candidate1"
+							   required>
+
+						<label>Candidate 1</label>
+
+					</div>
+
+					<!-- CANDIDATE 2 -->
+
+					<div class="candidate-option">
+
+						<img src="https://randomuser.me/api/portraits/women/2.jpg"
+							 width="70"
+							 height="70"
+							 style="border-radius:50%; margin-bottom:10px;">
+
+						<input type="radio"
+							   name="candidate"
+							   value="candidate2"
+							   required>
+
+						<label>Candidate 2</label>
+
+					</div>
+
+					<!-- CANDIDATE 3 -->
+
+					<div class="candidate-option">
+
+						<img src="https://randomuser.me/api/portraits/men/3.jpg"
+							 width="70"
+							 height="70"
+							 style="border-radius:50%; margin-bottom:10px;">
+
+						<input type="radio"
+							   name="candidate"
+							   value="candidate3"
+							   required>
+
+						<label>Candidate 3</label>
+
+					</div>
+
+					<!-- CANDIDATE 4 -->
+
+					<div class="candidate-option">
+
+						<img src="https://randomuser.me/api/portraits/women/4.jpg"
+							 width="70"
+							 height="70"
+							 style="border-radius:50%; margin-bottom:10px;">
+
+						<input type="radio"
+							   name="candidate"
+							   value="candidate4"
+							   required>
+
+						<label>Candidate 4</label>
+
+					</div>
+
+					<!-- SUBMIT BUTTON -->
+
+					<button type="submit"
+							class="custom-btn vote-btn">
+
+						Submit Vote
+
+					</button>
+
+				</div>
+
+			</form>
+
+		</div>
+
+	</div>
+
+</section>
+
+</body>
+
+</html>
