@@ -30,60 +30,71 @@ public class CandidateController {
 			Model model,
 			HttpSession session) {
 
-		String email = p.getName();
+		try {
 
-		User user = userServ.getUserByEmail(email);
+			// logged in user email
+			String email = p.getName();
 
-		// user already voted check
-		if (user.getStatus() == null) {
+			User user = userServ.getUserByEmail(email);
 
-			try {
-
-				// fetch selected candidate
-				Candidate selectedCan = canServ.getCandidateByCandidate(candidate);
-
-				// NULL CHECK FIX
-				if (selectedCan == null) {
-
-					session.setAttribute("vmsg",
-							"Candidate not found...");
-
-					return "redirect:/user/";
-				}
-
-				// increase vote
-				selectedCan.setVotes(
-						selectedCan.getVotes() + 1);
-
-				// save updated candidate
-				canServ.addCandidate(selectedCan);
-
-				// update user status
-				user.setStatus("Voted");
-
-				userServ.addUser(user);
+			// USER NULL CHECK
+			if (user == null) {
 
 				session.setAttribute("vmsg",
-						"Successfully Voted...");
+						"User not found...");
 
+				return "redirect:/signin";
 			}
 
-			catch (Exception e) {
+			// already voted check
+			if (user.getStatus() != null) {
 
 				session.setAttribute("vmsg",
-						"Something went wrong...");
-
-				e.printStackTrace();
+						"You have already voted...");
 
 				return "redirect:/user/";
 			}
 
-		}
+			// remove extra spaces
+			candidate = candidate.trim();
 
-		else {
+			System.out.println("Selected Candidate : " + candidate);
+
+			// fetch candidate from database
+			Candidate selectedCan = canServ.getCandidateByCandidate(candidate);
+
+			// CANDIDATE NULL CHECK
+			if (selectedCan == null) {
+
+				session.setAttribute("vmsg",
+						"Candidate not found in database...");
+
+				return "redirect:/user/";
+			}
+
+			// increment vote
+			selectedCan.setVotes(
+					selectedCan.getVotes() + 1);
+
+			// save updated candidate
+			canServ.addCandidate(selectedCan);
+
+			// update user status
+			user.setStatus("Voted");
+
+			userServ.addUser(user);
 
 			session.setAttribute("vmsg",
-					"You have already voted...");
+					"Successfully Voted...");
+
+		}
+
+		catch (Exception e) {
+
+			e.printStackTrace();
+
+			session.setAttribute("vmsg",
+					"Something went wrong...");
 		}
 
 		return "redirect:/user/";
