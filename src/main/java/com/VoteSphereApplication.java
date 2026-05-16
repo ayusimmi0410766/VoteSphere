@@ -13,56 +13,66 @@ import com.repository.UserRepository;
 @SpringBootApplication
 public class VoteSphereApplication implements CommandLineRunner   {
 
-	public static void main(String[] args) {
-		SpringApplication.run(VoteSphereApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(VoteSphereApplication.class, args);
+  
 
-	@Autowired
-	private UserRepository userRepo;
+	   @Autowired
+    private UserRepository userRe
 
-	@Autowired
-	private CandidateRepository canRepo;
+	   @Autowired
+    private CandidateRepository canRepo;
 
-	@Override
-	public void run(String... args) throws Exception {
+    @Override
+    public void run(String... args) throws Exceptio
 
-		// Admin
-		User admin = new User();
+		      // Admin
+        if (!userRepo.existsById(1)) {
 
-		admin.setEmail("admin");
-		admin.setName("admin");
-		admin.setPassword("admin");
-		admin.setPhone(1234);
-		admin.setRole("ROLE_ADMIN");
-		admin.setStatus("admin");
+            User admin = new User();
 
+            admin.setEmail("admin@gmail.com");
+            admin.setName("Admin");
+            admin.setPassword("admin123");
+            admin.setPhone(1234567890L);
+            admin.setRo
 
 		
-		// Candidate 1
-		Candidate candidate1 = new Candidate();
+            userRepo.save(admin);
+        }
 
-		candidate1.setCandidate("
+        // Candidate 1
 
-		canRepo.save(candidate1);
-
-		// Candidate 2
-		Candidate candidate2 = ne
-
-		candidate2.setCandidate("candidate2");
-
-		canRepo.save(candidate2);
+		
+            Candidate c1 = new Candidate();
+            c1.setCandidate("Candidate 1");
 
 
-		Candidate candidate3 = new Candidate();
+		      }
 
-		candidate3.setCandidate("candidate3");
+        // Candidate 2
+        if (!canRepo.exists
 
+		          Candidate c2 = new Candidate();
+            c2.setCandidate("Candidate 2");
+
+            canRepo.save(c2
 
 	
 
-		candidate4.setCandidate("candidate4");
+            Candidate c3 = new Candidate();
+            c3.setCandidate("Candidate 3");
 
-		canRepo.save(candidate4);
-	}
+            canRepo.save(c3);
+        }
+
+        // Candidate 4
+        if (!canRepo.existsById(4)) {
+
+            Candidate c4 = new Candidate();
+            c4.setCandidate("Candidate 4");
+
+            canRepo.save(c4);
+        }
+    }
 }
-	
