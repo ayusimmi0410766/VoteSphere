@@ -23,16 +23,16 @@ public class AdminController {
 		// TOTAL VOTES
 
 		int c1 =
-				canServ.getNumOfVotes("candidate1");
+				canServ.getNumOfVotes("Candidate 1");
 
 		int c2 =
-				canServ.getNumOfVotes("candidate2");
+				canServ.getNumOfVotes("Candidate 2");
 
 		int c3 =
-				canServ.getNumOfVotes("candidate3");
+				canServ.getNumOfVotes("Candidate 3");
 
 		int c4 =
-				canServ.getNumOfVotes("candidate4");
+				canServ.getNumOfVotes("Candidate 4");
 
 		// TOTAL
 
