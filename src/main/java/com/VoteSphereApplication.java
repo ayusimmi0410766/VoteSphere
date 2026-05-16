@@ -34,7 +34,7 @@ public class VoteSphereApplication implements CommandLineRunner {
 			admin.setEmail("admin@gmail.com");
 			admin.setName("Admin");
 			admin.setPassword("admin123");
-			admin.setPhone(1234567890L);
+			admin.setPhone(1234);
 			admin.setRole("ROLE_ADMIN");
 			admin.setStatus("ACTIVE");
 
