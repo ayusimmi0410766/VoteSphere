@@ -3,15 +3,9 @@
       xmlns:th="http://www.thymeleaf.org"
       th:replace="~{base :: layout(~{::section})}">
 
-<head>
-    <meta charset="UTF-8">
-    <title>Home</title>
-</head>
-
-<body>
-
 <section>
 
+    <!-- HERO SECTION -->
     <section class="hero-section">
 
         <div class="hero-content">
@@ -23,6 +17,7 @@
                 Spring Boot, Thymeleaf, Hibernate and MySQL.
             </p>
 
+            <!-- SESSION MESSAGE -->
             <div th:if="${session.msg}" class="message error-msg">
 
                 <h5 th:text="${session.msg}"></h5>
@@ -31,6 +26,7 @@
 
             </div>
 
+            <!-- BUTTONS -->
             <div class="hero-buttons">
 
                 <a th:href="@{/register}" class="custom-btn hero-btn">
@@ -47,6 +43,7 @@
 
     </section>
 
+    <!-- FEATURES -->
     <section class="feature-section">
 
         <div class="feature-card">
@@ -88,7 +85,5 @@
     </section>
 
 </section>
-
-</body>
 
 </html>
