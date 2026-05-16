@@ -26,7 +26,7 @@ public class CandidateController {
 	private UserService userServ;
 	
 	@PostMapping("/addcandidate") // vote
-	public String addCandidate(@RequestParam("candidate") String candidate,
+	public String addCandidate(@RequestParam("candidateId") int candidateId,
 			Principal p, Model model, HttpSession session)
 	{
 		String email = p.getName();
@@ -37,7 +37,10 @@ public class CandidateController {
 		{
 			try {
 				// add a vote to the selectedCandidate
-				Candidate selectedCan = canServ.getCandidateByCandidate(candidate);
+				Candidate selectedCan = canServ.getCandidateById(candidateId);
+				if (selectedCan == null) {
+					throw new IllegalArgumentException("Candidate not found with ID: " + candidateId);
+				}
 				selectedCan.setVotes(selectedCan.getVotes() + 1);
 				canServ.addCandidate(selectedCan); // update candidate
 				
