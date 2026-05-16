@@ -25,7 +25,7 @@ public class CandidateController {
 	private UserService userServ;
 
 	@PostMapping("/addcandidate") // vote
-	public String addCandidate(@RequestParam("candidate") String candidate,
+	public String addCandidate(@RequestParam("candidateId") int candidateId,
 			Principal p,
 			Model model,
 			HttpSession session) {
@@ -37,7 +37,7 @@ public class CandidateController {
 
 			User user = userServ.getUserByEmail(email);
 
-			// USER NULL CHECK
+			// user null check
 			if (user == null) {
 
 				session.setAttribute("vmsg",
@@ -55,24 +55,19 @@ public class CandidateController {
 				return "redirect:/user/";
 			}
 
-			// remove extra spaces
-			candidate = candidate.trim();
+			// fetch candidate by ID
+			Candidate selectedCan = canServ.getCandidateById(candidateId);
 
-			System.out.println("Selected Candidate : " + candidate);
-
-			// fetch candidate from database
-			Candidate selectedCan = canServ.getCandidateByCandidate(candidate);
-
-			// CANDIDATE NULL CHECK
+			// candidate null check
 			if (selectedCan == null) {
 
 				session.setAttribute("vmsg",
-						"Candidate not found in database...");
+						"Candidate not found...");
 
 				return "redirect:/user/";
 			}
 
-			// increment vote
+			// increase vote count
 			selectedCan.setVotes(
 					selectedCan.getVotes() + 1);
 
