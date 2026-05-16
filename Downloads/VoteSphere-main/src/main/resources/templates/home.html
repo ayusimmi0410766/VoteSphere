@@ -1,90 +1,85 @@
 <!doctype html>
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
-      th:replace="base :: layout(~{::section})">
+      th:replace="~{base :: layout(~{::section})}">
 
-<head>
-    <meta charset="UTF-8"/>
-    <title>Home</title>
-</head>
+<section>
 
-<body>
+    <div class="hero-section">
 
-<section class="hero-section">
+        <div class="hero-content">
 
-    <div class="hero-content">
+            <h1>Secure Online Voting Platform</h1>
 
-        <h1>Secure Online Voting Platform</h1>
+            <p>
+                A modern and secure online voting system developed using
+                Spring Boot, Thymeleaf, Hibernate and MySQL.
+            </p>
 
-        <p>
-            A modern and secure online voting system developed using
-            Spring Boot, Thymeleaf, Hibernate and MySQL.
-        </p>
+            <div th:if="${session.msg}" class="message error-msg">
 
-        <div th:if="${session.msg}" class="message error-msg">
+                <h5 th:text="${session.msg}"></h5>
 
-            <h5 th:text="${session.msg}"></h5>
+                <th:block th:text="${#session.removeAttribute('msg')}"></th:block>
 
-            <th:block th:text="${#session.removeAttribute('msg')}"></th:block>
+            </div>
 
-        </div>
+            <div class="hero-buttons">
 
-        <div class="hero-buttons">
+                <a th:href="@{/register}" class="custom-btn hero-btn">
+                    Get Started
+                </a>
 
-            <a th:href="@{/register}" class="custom-btn hero-btn">
-                Get Started
-            </a>
+                <a th:href="@{/signin}" class="outline-btn hero-btn">
+                    Login
+                </a>
 
-            <a th:href="@{/signin}" class="outline-btn hero-btn">
-                Login
-            </a>
+            </div>
 
         </div>
 
     </div>
 
+    <section class="feature-section">
+
+        <div class="feature-card">
+
+            <i class="bi bi-shield-lock-fill"></i>
+
+            <h3>Secure Authentication</h3>
+
+            <p>
+                Spring Security based authentication and protected access.
+            </p>
+
+        </div>
+
+        <div class="feature-card">
+
+            <i class="bi bi-bar-chart-fill"></i>
+
+            <h3>Smart Voting</h3>
+
+            <p>
+                Fast, responsive and reliable online voting experience.
+            </p>
+
+        </div>
+
+        <div class="feature-card">
+
+            <i class="bi bi-phone-fill"></i>
+
+            <h3>Responsive Design</h3>
+
+            <p>
+                Fully optimized for desktop, tablet and mobile devices.
+            </p>
+
+        </div>
+
+    </section>
+
 </section>
-
-<section class="feature-section">
-
-    <div class="feature-card">
-
-        <i class="bi bi-shield-lock-fill"></i>
-
-        <h3>Secure Authentication</h3>
-
-        <p>
-            Spring Security based authentication and protected access.
-        </p>
-
-    </div>
-
-    <div class="feature-card">
-
-        <i class="bi bi-bar-chart-fill"></i>
-
-        <h3>Smart Voting</h3>
-
-        <p>
-            Fast, responsive and reliable online voting experience.
-        </p>
-
-    </div>
-
-    <div class="feature-card">
-
-        <i class="bi bi-phone-fill"></i>
-
-        <h3>Responsive Design</h3>
-
-        <p>
-            Fully optimized for desktop, tablet and mobile devices.
-        </p>
-
-    </div>
-
-</section>
-
-</body>
 
 </html>
