@@ -10,7 +10,7 @@ public interface CandidateRepository extends JpaRepository<Candidate, Integer>{
 	
 	
 	@Query("select votes from Candidate where candidate = :candidate")
-	public int getNumOfVotes(@Param("candidate") String candidate);
+	public Integer getNumOfVotes(@Param("candidate") String candidate);
 
 	
 	
