@@ -41,7 +41,8 @@ public class CandidateService {
 	// get number of votes
 	public int getNumOfVotes(String candidate) {
 
-		return this.canRepo.getNumOfVotes(candidate);
+		Integer votes = this.canRepo.getNumOfVotes(candidate);
+		return votes != null ? votes : 0;
 	}
 
 	// get candidate by candidate name
